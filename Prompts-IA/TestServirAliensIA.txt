@@ -1,0 +1,153 @@
+Te voy a compartir una clase llamada Aliens.
+
+Contexto principal resumido:
+Imagina que estás desarrollando el software de una máquina de juguetes capaz de
+crear aliens únicos.
+El usuario podrá definir sus características físicas (tamaño, color, ojos, brazos y
+piernas), y el sistema deberá controlar restricciones y calcular automáticamente su
+precio.
+
+Quiero que generes una clase de pruebas unitarias con JUnit5 para los métodos y constructor:
+ 
+Método 1: public void imprimir()
+
+IMPORTANTE:
+No construyas la prueba basándote en el código interno del método. 
+Construye los CASOS de prueba basándote en esta descripción funcional:
+-el método no recibe parámetros.
+-en un variable mensaje de tipo string se guarda el mensaje para imprimir el valor de todos los atributos de la clase.
+-y se imprime en el mensaje.
+
+Método 2: public void imprimir2()
+
+IMPORTANTE:
+No construyas la prueba basándote en el código interno del método. 
+Construye los CASOS de prueba basándote en esta descripción funcional:
+-el método no recibe parámetros.
+-en un variable mensaje de tipo string se guarda el mensaje para imprimir el tamaño y el color del alien.
+-y se imprime en el mensaje.
+
+
+constructor: public Alien(int tamanio, String color)
+
+
+IMPORTANTE:
+No construyas la prueba basándote en el código interno del método. 
+Construye los CASOS de prueba basándote en esta descripción funcional:
+-recibe como parámetros el tamanio y el color.
+
+2. Validaciones que sxe realiza en el constructor :
+o Tamaño mínimo: 5 cm
+o Tamaño máximo: 30 cm
+o Si el valor está fuera del rango, ajustarlo automáticamente.
+3. Cálculo de precios:
+o Precio del cuerpo: 20% del tamaño
+o Precio de extremidades: 10% del tamaño
+o Precio de ojos: 5% del tamaño
+
+
+Requisitos: 
+-usa los contructores de la clase
+-construye todos los casos de pruebas importantes
+-incluye comentarios explicando(explicitos) que valida cada caso enumerado antes de los @Test.
+usa únicamente los constructores, getters y métodos disponibles en la clase.
+-no inventes métodos que no existan.
+-usa assertEquals cuando responda.
+-como se trabaja con valores doublé, usa tolerancia en los asserts.
+-nombra la clase de prueba como TestAlienIA
+
+adjunto código de la clase Alien:
+
+package com.krakedev.maquinaAliens;
+
+public class Alien {
+	
+	//ATRIBUTOS
+	private int tamanio;
+	private String color;
+	private int numeroOjos;
+	private int numeroBrazos;
+	private int numeroPies;
+	private double precioExtremidad;
+	private double precioOjo;
+	private double precioCuerpo;
+	
+	//CONSTRUCTOR CON PARAMETROS Y VALIDACIONES
+	public Alien(int tamanio, String color) {
+		if(tamanio<5) {
+			this.tamanio=5;
+		}else if(tamanio>30) {
+			this.tamanio=30;
+		}else {
+			this.tamanio=tamanio;
+		}
+		
+		this.color=color;
+		
+		this.precioCuerpo=this.tamanio*0.2;
+		this.precioExtremidad=this.tamanio*0.1;
+		this.precioOjo=this.tamanio*0.05;		
+	}
+	
+	//METODOS GET
+	public int getTamanio() {
+		return tamanio;
+	}
+	public String getColor() {
+		return color;
+	}
+	public int getNumeroOjos() {
+		return numeroOjos;
+	}
+	public int getNumeroBrazos() {
+		return numeroBrazos;
+	}
+	public int getNumeroPies() {
+		return numeroPies;
+	}
+	public double getPrecioExtremidad() {
+		return precioExtremidad;
+	}
+	public double getPrecioOjo() {
+		return precioOjo;
+	}
+	public double getPrecioCuerpo() {
+		return precioCuerpo;
+	}
+	
+	//METODO IMPRIMIR
+	public void imprimir() {
+		String mensaje="Tamaño: "+tamanio
+				+"\nColor: "+color
+				+"\nNro ojos: "+numeroOjos
+				+"\nNro brazos: "+numeroBrazos
+				+"\nNro pies: "+numeroPies
+				+"\nPrecio extremidad: "+precioExtremidad
+				+"\nPrecio ojo: "+precioOjo
+				+"\nPrecio cuerpo: "+precioCuerpo;
+		
+		System.out.println(mensaje);		
+	}
+	
+	//METODO IMPRIMIR 2 - PARA HACER PRUBAS
+	public void imprimir2() {
+		System.out.println("Tamanio:"+tamanio+", Color:"+color);
+	}
+	
+	//METODO TO STRING
+	@Override
+	public String toString() {
+		return "\n \nAlien [tamanio=" + tamanio 
+				+ ", \ncolor=" + color 
+				+ ", \nnumeroOjos=" + numeroOjos 
+				+ ", \nnumeroBrazos="	+ numeroBrazos 
+				+ ", \nnumeroPies=" + numeroPies 
+				+ ", \nprecioExtremidad=" + precioExtremidad
+				+ ", \nprecioOjo=" + precioOjo 
+				+ ", \nprecioCuerpo=" + precioCuerpo + "]";
+	}
+	
+	
+	
+
+}
